@@ -1,6 +1,5 @@
 require 'open-uri'
 require 'nokogiri'
-require_relative 'song'
 
 class ScrapeSongsJob 
 
