@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Played Songs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Playtime</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @played_songs.each do |played_song| %>
+      <tr>
+        <td><%= played_song.title %></td>
+        <td><%= played_song.artist %></td>
+        <td><%= played_song.playtime %></td>
+        <td><%= link_to 'Show', played_song %></td>
+        <td><%= link_to 'Edit', edit_played_song_path(played_song) %></td>
+        <td><%= link_to 'Destroy', played_song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Played Song', new_played_song_path %>

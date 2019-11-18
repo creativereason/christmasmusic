@@ -1,0 +1,32 @@
+<%= form_with(model: played_song, local: true) do |form| %>
+  <% if played_song.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(played_song.errors.count, "error") %> prohibited this played_song from being saved:</h2>
+
+      <ul>
+      <% played_song.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :played_song_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :artist %>
+    <%= form.text_field :artist, id: :played_song_artist %>
+  </div>
+
+  <div class="field">
+    <%= form.label :playtime %>
+    <%= form.datetime_select :playtime, id: :played_song_playtime %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
