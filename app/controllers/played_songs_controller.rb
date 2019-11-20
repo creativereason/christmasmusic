@@ -5,6 +5,10 @@ class PlayedSongsController < ApplicationController
   # GET /played_songs.json
   def index
     @played_songs = PlayedSong.all
+
+    @title = PlayedSong.group(:title).order("count_all desc").count
+    @artist = PlayedSong.group(:artist).order("count_all desc").count
+
   end
 
   # GET /played_songs/1

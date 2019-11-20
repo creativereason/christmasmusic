@@ -2,13 +2,27 @@
 
 <h1>Christmas Songs Statistics</h1>
 <p>A little background... I put together this site as an experiment to see if what I suspect is true. Are there really only 20 Christmas songs but performed by various artists.</p>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Stats to date:</h5>
+    <ul class="card-text">
+      <li><%=@played_songs.count%> songs played since <%=@played_songs.first.playtime.strftime("%m/%d/%Y %I:%M%p")%></li>
+      <li><%=@title.count%> unique song titles played</li>
+      <li><%=@artist.count%> unique artists played</li>
+      <li>The most popular song(s) has been played <%=@title.first.count%> times. Or <%=number_to_percentage(@title.first.count.to_f/@played_songs.count.to_i)%> of the time.</li>
+    </ul>
+  </div>
+</div>
 
 <div class="container">
   <h2>Songs played by day</h2>
   <%= line_chart PlayedSong.group_by_day(:playtime).count %>
 </div>
 <div class="container">
-  <h2>Songs Played Multiple Times</h2>
-  <%= pie_chart PlayedSong.group(:title).having("count(*) > ?", 2).count %>
+  <h2>Songs Played Most Frequently</h2>
+  <%= pie_chart PlayedSong.group(:title).having("count(*) >= ?", @title.first.count - 1).count %>
 </div>
-
+<div class="container">
+  <h2>Artist Played Most Frequently</h2>
+  <%= pie_chart PlayedSong.group(:artist).having("count(*) >= ?", @artist.first.count - 1).count %>
+</div>
