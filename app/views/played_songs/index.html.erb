@@ -9,7 +9,7 @@
       <li><%=@played_songs.count%> songs played since <%=@played_songs.first.playtime.strftime("%m/%d/%Y %I:%M%p")%></li>
       <li><%=@title.count%> unique song titles played</li>
       <li><%=@artist.count%> unique artists played</li>
-      <li>The most popular song(s) has been played <%=@title.first.count%> times. Or <%=number_to_percentage(@title.first.count.to_f/@played_songs.count.to_i)%> of the time.</li>
+      <li>The most popular song(s) has been played <%=@title.first[1]%> times. Or <%=number_to_percentage(@title.first[1].to_f/@played_songs.count.to_i)%> of the time.</li>
     </ul>
   </div>
 </div>
@@ -20,9 +20,9 @@
 </div>
 <div class="container">
   <h2>Songs Played Most Frequently</h2>
-  <%= pie_chart PlayedSong.group(:title).having("count(*) >= ?", @title.first.count - 1).count %>
+  <%= pie_chart PlayedSong.group(:title).having("count(*) >= ?", @title.first[1] - 1).count %>
 </div>
 <div class="container">
   <h2>Artist Played Most Frequently</h2>
-  <%= pie_chart PlayedSong.group(:artist).having("count(*) >= ?", @artist.first.count - 1).count %>
+  <%= pie_chart PlayedSong.group(:artist).having("count(*) >= ?", @artist.first[1] -1 ).count %>
 </div>
