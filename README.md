@@ -1,24 +1,7 @@
-# README
+# Christmas Songs Statistics
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A little background... I put together this site as an experiment to see if what I suspect is true. Are there really only 20 Christmas songs but performed by various artists.
 
-Things you may want to cover:
+This project pulls data from radio.com using [Nokogiri](https://nokogiri.org/) and stores the data in a Rails model. 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Right now the data is just presented in a summary view in the index file using [ChartKick](https://chartkick.com/). But the goal is to convert this data into a Infographic. 
