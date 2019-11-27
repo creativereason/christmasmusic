@@ -26,3 +26,7 @@
   <h2>Artist Played Most Frequently</h2>
   <%= column_chart PlayedSong.group(:artist).limit(8).order("count_all desc").count %>
 </div>
+<div class="container">
+  <h2>Song / Artist Combo Played Most Frequently</h2>
+  <%= column_chart @song_by_artist%>
+</div>
