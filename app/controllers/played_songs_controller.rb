@@ -8,7 +8,12 @@ class PlayedSongsController < ApplicationController
 
     @title = PlayedSong.group(:title).order("count_all desc").count
     @artist = PlayedSong.group(:artist).order("count_all desc").count
-
+    results = PlayedSong.group(:artist, :title).order("count_all desc").limit(10).count
+    @song_by_artist = Hash.new
+    results.each do |row|
+      #puts row[0][0] + "-" + row[0][1]
+      @song_by_artist[row[0][0] + "-" + row[0][1]] = row[1]
+    end
   end
 
   # GET /played_songs/1

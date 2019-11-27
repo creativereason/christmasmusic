@@ -20,9 +20,9 @@
 </div>
 <div class="container">
   <h2>Songs Played Most Frequently</h2>
-  <%= pie_chart PlayedSong.group(:title).having("count(*) >= ?", @title.first[1] - 1).count %>
+  <%= column_chart PlayedSong.group(:title).limit(8).order("count_all desc").count%>
 </div>
 <div class="container">
   <h2>Artist Played Most Frequently</h2>
-  <%= pie_chart PlayedSong.group(:artist).having("count(*) >= ?", @artist.first[1] -1 ).count %>
+  <%= column_chart PlayedSong.group(:artist).limit(8).order("count_all desc").count %>
 </div>
